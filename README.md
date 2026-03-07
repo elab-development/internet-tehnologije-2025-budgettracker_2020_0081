@@ -2,7 +2,7 @@
 
  Budget Tracker je web aplikacija za upravljanje ličnim finansijama i budžetom. Omogućava da na jednom mestu vodiš račune, beležiš prihode i rashode, planiraš budžete po kategorijama i pratiš potrošnju kroz vreme. Sistem dodatno nudi kalendar državnih praznika i prikaz iznosa u različitim valutama, bez menjanja izvornih vrednosti u bazi podataka.
 
-![Logo](./images/logo.png)
+![Logo](./assets/images/logo.png)
 ---
 
 ## Zašto  Budget Tracker:
@@ -22,12 +22,12 @@ Većina korisnika finansije prati „u glavi“, u Excel tabelama ili ih uopšte
 - Generisanje izveštaja o transakcijama za izabrani period i kriterijume.
 - Kalendar sa obeleženim državnim praznicima radi boljeg planiranja troškova.
 - „Valuta prikaza“ za pregled svih iznosa u željenoj valuti (bez promene vrednosti u bazi).
-![Ekran1](./images/screen1.png)
-![Ekran2](./images/screen2.png)
+![Ekran1](./assets/images/screen1.png)
+![Ekran2](./assets/images/screen2.png)
 ### Administrator
 - Upravljanje kategorijama (kreiranje, izmena i brisanje).
 - Održavanje osnovnih sistemskih podataka.
-![Ekran3](./images/screen3.png)
+![Ekran3](./assets/images/screen3.png)
 ---
 
 ## Tehnologije
