@@ -64,7 +64,7 @@ git clone https://github.com/elab-development/internet-tehnologije-2025-budgettr
 > U XAMPP-u uključi Apache i MySQL.
 
 ```bash
-cd  Budget Trackerbackend
+cd  budgettracker-be
 composer install
 php artisan migrate:fresh --seed
 php artisan serve
@@ -72,7 +72,7 @@ php artisan serve
 
 ### 4) Frontend (React)
 ```bash
-cd  Budget Trackerfront
+cd  budgettracker-fe
 npm install
 npm start
 ```
