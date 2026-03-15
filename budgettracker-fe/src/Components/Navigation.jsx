@@ -23,23 +23,6 @@ const Navigation = ({ token, user, isAuthenticated, role, onLogoutLocal }) => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
 
-  const handleLogout = async () => {
-    try {
-      await fetch(`${BASE_URL}/logout`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    } catch (error) {
-      // ignore
-    } finally {
-      onLogoutLocal();
-      navigate("/login");
-    }
-  };
-
   const menuItems = useMemo(() => {
     if (!isAuthenticated) {
       return [
@@ -112,6 +95,24 @@ const Navigation = ({ token, user, isAuthenticated, role, onLogoutLocal }) => {
   };
 
   const homeLink = !isAuthenticated ? "/login" : role === "admin" ? "/admin" : "/home";
+
+  const handleLogout = async () => {
+    try {
+      await fetch(`${BASE_URL}/logout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      // ignore
+    } finally {
+      onLogoutLocal();
+      navigate("/login");
+    }
+  };
+
 
   return (
     <>
