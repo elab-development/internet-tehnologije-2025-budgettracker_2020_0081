@@ -59,8 +59,8 @@ components:
       type: object
       properties:
         id: { type: integer, example: 1 }
-        name: { type: string, example: "Antonina" }
-        email: { type: string, example: "antonina@gmail.com" }
+        name: { type: string, example: "Anja" }
+        email: { type: string, example: "anja123@gmail.com" }
         role: { type: string, example: "user" }
         profile_info: { type: string, nullable: true, example: "Profil info korisnika." }
 
@@ -68,16 +68,16 @@ components:
       type: object
       required: [name, email, password]
       properties:
-        name: { type: string, example: "Antonina" }
-        email: { type: string, example: "antonina@gmail.com" }
-        password: { type: string, example: "antonina" }
+        name: { type: string, example: "Anja" }
+        email: { type: string, example: "anja123@gmail.com" }
+        password: { type: string, example: "anja123" }
 
     AuthLoginRequest:
       type: object
       required: [email, password]
       properties:
-        email: { type: string, example: "antonina@gmail.com" }
-        password: { type: string, example: "antonina" }
+        email: { type: string, example: "anja123@gmail.com" }
+        password: { type: string, example: "anja123" }
 
     AuthRegisterResponse:
       type: object
@@ -329,10 +329,10 @@ paths:
             examples:
               user:
                 summary: Običan korisnik.
-                value: { email: "antonina@gmail.com", password: "antonina" }
+                value: { email: "anja123@gmail.com", password: "anja123" }
               admin:
                 summary: Admin korisnik.
-                value: { email: "admin@budget.local", password: "admin" }
+                value: { email: "admin@gmail.com", password: "admin" }
       responses:
         "200":
           description: Uspešan login.
@@ -367,7 +367,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/AuthLoginRequest"
-            example: { email: "antonina@gmail.com", password: "antonina" }
+            example: { email: "anja123@gmail.com", password: "anja123" }
       responses:
         "200":
           description: Uspešan login.
@@ -388,7 +388,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/AuthLoginRequest"
-            example: { email: "admin@budget.local", password: "admin" }
+            example: { email: "admin@gmail.com", password: "admin" }
       responses:
         "200":
           description: Uspešan login.
