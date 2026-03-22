@@ -95,7 +95,7 @@ Kada je u pitanju pristup podacima, administrator ima uvid u sistemske informaci
 ```
 2. Pokrenite backend:
 ```bash
-   cd portal-euprava
+   cd budgettracker-be
    composer install
    php artisan migrate:fresh --seed
    php artisan serve
@@ -103,7 +103,7 @@ Kada je u pitanju pristup podacima, administrator ima uvid u sistemske informaci
     
 3. Pokrenite frontend:
 ```bash
-   cd euprava-frontend
+   cd budgettracker-fe
    npm install
    npm start
 ```

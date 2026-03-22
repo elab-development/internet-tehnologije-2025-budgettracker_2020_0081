@@ -15,7 +15,6 @@ fi
 
 echo "MySQL is up."
 
-# Uvek očisti cache 
 php artisan config:clear || true
 php artisan cache:clear || true
 php artisan route:clear || true
