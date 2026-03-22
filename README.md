@@ -87,62 +87,40 @@ Kada je u pitanju pristup podacima, administrator ima uvid u sistemske informaci
 
 ---
 
-## Pokretanje lokalno (bez Dockera)
+## Pokretanje projekta (lokalno bez Docker-a)
 
-### 1) Preduslovi
-- Node.js 18+.
-- PHP 8.2+.
-- Composer.
-- XAMPP (Apache i MySQL).
-
-### 2) Kloniranje projekta
+1. Klonirajte repozitorijum:
 ```bash
-git clone https://github.com/elab-development/internet-tehnologije-2025-budgettracker_2020_0081.git
+    git clone https://github.com/elab-development/internet-tehnologije-2025-budgettracker_2020_0081.git
+```
+2. Pokrenite backend:
+```bash
+   cd portal-euprava
+   composer install
+   php artisan migrate:fresh --seed
+   php artisan serve
+```
+    
+3. Pokrenite frontend:
+```bash
+   cd euprava-frontend
+   npm install
+   npm start
+```
+    
+4.  Frontend pokrenut na: [http://localhost:3000](http://localhost:3000) Backend API pokrenut na: [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api)
+
+## Pokretanje projekta uz Docker
+
+1. Klonirajte repozitorijum:
+```bash
+    git clone https://github.com/elab-development/internet-tehnologije-2025-appzakreiranjeplanera_2022_0560.git
 ```
 
-### 3) Backend (Laravel)
-> U XAMPP-u uključi Apache i MySQL.
-
+2. Pokrenite Docker kompoziciju:
 ```bash
-cd  budgettracker-be
-composer install
-php artisan migrate:fresh --seed
-php artisan serve
+    docker compose down -v
+    docker compose up --build
 ```
 
-### 4) Frontend (React)
-```bash
-cd  budgettracker-fe
-npm install
-npm start
-```
-
-### 5) URL-ovi
-- Frontend: http://localhost:3000.
-- Backend API: http://127.0.0.1:8000/api.
-
----
-
-## Pokretanje uz Docker
-
-### 1) Preduslovi
-- Docker Desktop instaliran i pokrenut.
-
-### 2) Start
-```bash
-docker compose down -v
-docker compose up --build
-```
-
-### 3) URL-ovi
-- Frontend: http://localhost:3000.
-- Backend API: http://127.0.0.1:8000/api.
-
----
-
-## Napomene o valutama i praznicima
-
-- Valuta prikaza služi samo za prikaz na UI. Podaci se čuvaju u originalnoj valuti računa, a preračunavanje se radi prilikom prikaza.
-- Kalendar praznika koristi javni servis kako bi korisnik lakše planirao periode sa potencijalno većim troškovima.
-
----
+3.  Frontend pokrenut na: [http://localhost:3000](http://localhost:3000) Backend API pokrenut na: [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api)
