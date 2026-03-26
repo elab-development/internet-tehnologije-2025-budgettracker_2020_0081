@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             ]
         );
 
-        // 3 poznata korisnika
+        // 2 poznata korisnika
         $knownUsers = [
             [
                 'name' => 'Anja Jandrić',
