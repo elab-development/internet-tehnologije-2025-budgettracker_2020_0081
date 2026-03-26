@@ -23,6 +23,10 @@ tags:
     description: Budžeti (ulogovani korisnik, filteri + paginacija).
   - name: Transactions
     description: Transakcije (ulogovani korisnik, filteri + paginacija).
+  - name: Admin
+    description: Admin metrike.
+  - name: FX
+    description: Kursna lista za podržane valute.
 
 components:
   securitySchemes:
@@ -286,6 +290,62 @@ components:
         meta:
           $ref: "#/components/schemas/PaginationMeta"
 
+    ChartRow:
+      type: array
+      items:
+        oneOf:
+          - type: string
+          - type: number
+
+    ChartMatrix:
+      type: array
+      items:
+        $ref: "#/components/schemas/ChartRow"
+
+    AdminMetricsCards:
+      type: object
+      properties:
+        users: { type: integer, example: 12 }
+        transactions: { type: integer, example: 84 }
+        net: { type: number, example: 15420.5 }
+
+    AdminMetricsCharts:
+      type: object
+      properties:
+        pie_type:
+          $ref: "#/components/schemas/ChartMatrix"
+        bar_expenses_by_month:
+          $ref: "#/components/schemas/ChartMatrix"
+
+    TopCategoryMetric:
+      type: object
+      properties:
+        category: { type: string, example: "Hrana" }
+        expense: { type: number, example: 12500 }
+
+    AdminMetricsResponse:
+      type: object
+      properties:
+        year: { type: integer, example: 2026 }
+        cards:
+          $ref: "#/components/schemas/AdminMetricsCards"
+        charts:
+          $ref: "#/components/schemas/AdminMetricsCharts"
+        top_categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/TopCategoryMetric"
+
+    FxRateResponse:
+      type: object
+      properties:
+        provider: { type: string, example: "kurs.resenje.org" }
+        base: { type: string, example: "RSD" }
+        currency: { type: string, example: "EUR" }
+        date: { type: string, format: date, nullable: true, example: "2026-03-26" }
+        date_from: { type: string, format: date, nullable: true, example: "2026-03-26" }
+        middle: { type: number, example: 117.21 }
+
 paths:
   /register:
     post:
@@ -422,6 +482,76 @@ paths:
                 properties:
                   success: { type: boolean, example: false }
                   message: { type: string, example: "Token nije validan." }
+
+
+  /admin/metrics:
+    get:
+      tags: [Admin]
+      summary: Admin dashboard metrike.
+      description: Admin-only endpoint. Vraća kartice, chart matrice i top kategorije za hardkodiranu 2026. godinu.
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminMetricsResponse"
+        "401":
+          description: Token nedostaje ili nije validan.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleMessage"
+        "403":
+          description: Forbidden. Samo admin korisnik.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleMessage"
+
+  /fx/kurs/{currency}:
+    get:
+      tags: [FX]
+      summary: Današnji kurs za podržanu valutu.
+      description: Trenutno je podržan samo EUR. Endpoint je zaštićen Sanctum autentifikacijom.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: currency
+          required: true
+          description: Šifra valute malim slovima.
+          schema:
+            type: string
+            enum: [eur]
+            example: eur
+      responses:
+        "200":
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FxRateResponse"
+        "401":
+          description: Token nedostaje ili nije validan.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleMessage"
+        "422":
+          description: Unsupported currency.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleMessage"
+        "502":
+          description: FX provider nije dostupan ili je vratio neispravne podatke.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleMessage"
 
   /categories:
     get:
