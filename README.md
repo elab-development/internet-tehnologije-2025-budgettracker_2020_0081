@@ -114,7 +114,7 @@ Kada je u pitanju pristup podacima, administrator ima uvid u sistemske informaci
 
 1. Klonirajte repozitorijum:
 ```bash
-    git clone https://github.com/elab-development/internet-tehnologije-2025-appzakreiranjeplanera_2022_0560.git
+    git clone https://github.com/elab-development/internet-tehnologije-2025-budgettracker_2020_0081.git
 ```
 
 2. Pokrenite Docker kompoziciju:
